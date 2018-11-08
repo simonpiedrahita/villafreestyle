@@ -82,12 +82,21 @@ class Template
         return $content;
     }
     
+    public static function removeGutenberg()
+    {
+        $prioriries = apply_filters('cloudpress\companion\gutenberg_autop_filters', array(6, 8));
+        foreach ($prioriries as $priority) {
+            remove_filter('the_content', 'gutenberg_wpautop', $priority);
+        }
+        do_action('cloudpress\companion\remove_gutenberg');
+    }
+    
     public static function filterContent($content)
     {
         $companion = \Mesmerize\Companion::instance();
         if ($companion->isMaintainable()) {
             remove_filter('the_content', 'wpautop');
-            remove_filter('the_content', 'gutenberg_wpautop', 8);
+            static::removeGutenberg();
             
             return Template::content($content, false);
         }
@@ -155,13 +164,14 @@ class Template
             // directly call for the page content
             ob_start();
             remove_filter('the_content', 'wpautop');
-            remove_filter('the_content', 'gutenberg_wpautop', 8);
+            static::removeGutenberg();
             the_content();
             $content = ob_get_clean();
         } else {
             // inside the filter
             
             if (is_customize_preview()) {
+                
                 $settingContent = get_theme_mod('page_content', array());
                 if ($settingContent && is_string($settingContent) && ! empty($settingContent)) {
                     $settingContent = json_decode($settingContent, true);
