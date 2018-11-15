@@ -1,0 +1,13 @@
+<div id="register-form">
+  
+  [text name-2 placeholder "Your Name"]
+    
+  [email* your-email placeholder "Your Email"]
+    
+  [text phonenumber placeholder "Phone Number"]
+  
+  [select questions "Select Your Subject" "PHP Program" "Online Marketing"]  
+    
+  [submit class:gp-btn class:btn-hs class:btn-block "Register Now"]
+  
+</div>

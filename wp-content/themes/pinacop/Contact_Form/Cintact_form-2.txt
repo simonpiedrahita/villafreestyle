@@ -1,0 +1,25 @@
+<div id="ajax-form-two">
+   <div class="row">
+     <div class="vc_col-sm-6">
+         [text* your-name placeholder "Your Name"]
+     </div>
+
+     <div class="vc_col-sm-6">
+        [email* your-email placeholder "Your Email"]
+     </div>
+
+     <div class="vc_col-sm-6">
+        [text* subject placeholder "Subject"]
+     </div>
+
+     <div class="vc_col-sm-6">
+        [url website placeholder "Your Website"]
+     </div>
+   </div><!-- /.row -->
+
+  <div class="twelve columns">
+     [textarea* massage placeholder "Your Massage"]
+  </div>
+  [submit class:gp-btn class:btn-hs class:btn-block "Send Massage"]
+  
+</div>
